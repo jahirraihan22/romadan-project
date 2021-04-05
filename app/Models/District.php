@@ -12,8 +12,4 @@ class District extends Model
     {
         return $this->belongsTo(Division::class);
     }
-    public function romadan()
-    {
-        return $this->hasMany(Romadan::class);
-    }
 }

@@ -17,34 +17,34 @@ class DivishionSeeder extends Seeder
     {
         $arr = [
             [
-                'name' => 'Dhaka'
+                'name' => 'ঢাকা'
             ],
 
             [
-                'name' => 'Rajshahi'
+                'name' => 'রাজশাহী'
             ],
 
             [
-                'name' => 'Chattogram'
+                'name' => 'চট্টগ্রাম'
             ],
 
             [
-                'name' => 'Khulna'
+                'name' => 'খুলনা'
             ],
 
             [
-                'name' => 'Mymensing'
+                'name' => 'ময়মনসিংহ'
             ],
 
             [
-                'name' => 'Sylhet'
+                'name' => 'সিলেট'
             ],
             [
-                'name' => 'Rangpur'
+                'name' => 'রংপুর'
             ],
 
             [
-                'name' => 'Barishal'
+                'name' => 'বরিশাল'
             ]
         ];
         foreach ($arr as $key => $a) {

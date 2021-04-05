@@ -17,6 +17,7 @@ class CreateRomadansTable extends Migration
             $table->id();
             $table->string('romadan');
             $table->date('date');
+            $table->string('day');
             $table->time('sahri');
             $table->time('iftar');
             $table->timestamps();

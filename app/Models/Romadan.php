@@ -8,8 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Romadan extends Model
 {
     use HasFactory;
-    public function districts()
-    {
-        return $this->belongsTo(District::class);
-    }
+    // 
 }
