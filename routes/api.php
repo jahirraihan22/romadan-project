@@ -21,5 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/romadans', [RomadanController::class, 'index']);
+Route::get('/romadans/{date}', [RomadanController::class, 'dateWiseIndex']);
 Route::get('/districts', [DistrictController::class, 'index']);
 Route::get('/romadan/{romadan_id}/district/{district_id}', [RomadanController::class, 'getScheduleForDistricts']);

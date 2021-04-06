@@ -16,4 +16,10 @@ class RomadanController extends Controller
         $romadan = Romadan::find($romadan_id);
         return response($romadan);
     }
+    public function dateWiseIndex($day)
+    {
+        // dd($day);
+        $romadan = Romadan::where('date', $day)->get();
+        return $romadan;
+    }
 }

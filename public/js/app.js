@@ -1848,7 +1848,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {},
+  data: function data() {
+    return {
+      items: {
+        romadan: '',
+        date: ''
+      },
+      date: '2021-04-17'
+    };
+  },
+  methods: {
+    formatDate: function formatDate() {
+      var d = new Date(),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+      return [year, month, day].join('-');
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    //   this.date = this.formatDate();
+    axios.get("/api/romadans/".concat(this.date)).then(function (response) {
+      _this.items.romadan = response.data[0].romadan;
+      _this.items.date = response.data[0].date; //   console.log('response :>> ', this.items);
+
+      console.log('response.data.date :>> ', response.data[0].romadan);
+    })["catch"](function (error) {
+      console.log('error :>> ', error);
+    });
+  }
+});
 
 /***/ }),
 
@@ -37401,7 +37448,39 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    [
+      _c(
+        "v-container",
+        [
+          _c(
+            "v-card",
+            [
+              _c("v-card-title", [
+                _vm._v(
+                  "\n                আজকের সেহরি ও ইফতারের সময়সূচী \n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c("v-card-text", [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.items.romadan) +
+                    "\n                " +
+                    _vm._s(_vm.items.date) +
+                    "\n            "
+                )
+              ])
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
