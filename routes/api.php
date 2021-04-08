@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\DivishionController;
 use App\Http\Controllers\RomadanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,5 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/romadans', [RomadanController::class, 'index']);
 Route::get('/romadans/{date}', [RomadanController::class, 'dateWiseIndex']);
-Route::get('/districts', [DistrictController::class, 'index']);
+Route::get('/divishions', [DivishionController::class, 'index']);
+Route::get('/districts/{div_id}', [DistrictController::class, 'index']);
 Route::get('/romadan/{romadan_id}/district/{district_id}', [RomadanController::class, 'getScheduleForDistricts']);

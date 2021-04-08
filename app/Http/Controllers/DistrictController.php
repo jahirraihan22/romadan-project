@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class DistrictController extends Controller
 {
-    public function index()
+    public function index($div_id)
     {
-        return response(District::all());
+        return response(District::where('divishion_id', $div_id)->get());
     }
 }
