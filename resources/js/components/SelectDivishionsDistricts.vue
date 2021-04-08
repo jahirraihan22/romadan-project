@@ -14,11 +14,12 @@
         </v-col>
         <v-col class="d-flex" cols="12" sm="6">
           <v-select
-            v-if="isDisabled"
+            :disabled="!isDisabled"
             :items="districts"
-            value="name"
+            item-value="id"
             item-text="name"
             label="জেলা"
+            @change="getTime($event)"
             dense
           ></v-select>
         </v-col>
@@ -32,6 +33,7 @@ export default {
     return {
       divishions: [],
       districts: [],
+      getDistrictDetails: [],
       isDisabled: false,
     };
   },
@@ -46,12 +48,23 @@ export default {
           console.log("error :>> ", error);
         });
     },
-    getDistricts(event) {
+    getDistricts(div_id) {
       this.isDisabled = true;
+      axios
+        .get(`/api/districts/divishion/${div_id}`)
+        .then((response) => {
+          this.districts = response.data;
+        })
+        .catch((error) => {
+          console.log("error :>> ", error);
+        });
+    },
+    getTime(event) {
       axios
         .get(`/api/districts/${event}`)
         .then((response) => {
-          this.districts = response.data;
+          this.getDistrictDetails = response.data;
+          EventBus.$emit("getTime", this.getDistrictDetails);
         })
         .catch((error) => {
           console.log("error :>> ", error);

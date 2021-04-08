@@ -86,8 +86,6 @@ export default {
         .then((response) => {
           this.items.romadan = response.data[0].romadan;
           this.items.date = response.data[0].date;
-          //   console.log('response :>> ', this.items);
-          console.log("response.data.date :>> ", response.data[0].romadan);
         })
         .catch((error) => {
           console.log("error :>> ", error);
@@ -100,8 +98,6 @@ export default {
         .then((response) => {
           this.items.romadan = response.data[0].romadan;
           this.items.date = response.data[0].date;
-          //   console.log('response :>> ', this.items);
-          console.log("response.data.date :>> ", response.data[0].romadan);
         })
         .catch((error) => {
           console.log("error :>> ", error);
@@ -112,6 +108,10 @@ export default {
   created() {
     this.getDateRomadan();
     this.getAllRomadan();
+
+    EventBus.$on('getTime',(getDistrictdetails)=>{
+        console.log('objectjkfdhg :>> ',getDistrictdetails[0].id);
+    });
   },
 };
 </script>

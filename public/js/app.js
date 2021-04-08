@@ -1932,9 +1932,7 @@ __webpack_require__.r(__webpack_exports__);
       //   this.date = this.formatDate();
       axios.get("/api/romadans/".concat(this.date)).then(function (response) {
         _this.items.romadan = response.data[0].romadan;
-        _this.items.date = response.data[0].date; //   console.log('response :>> ', this.items);
-
-        console.log("response.data.date :>> ", response.data[0].romadan);
+        _this.items.date = response.data[0].date;
       })["catch"](function (error) {
         console.log("error :>> ", error);
       });
@@ -1945,9 +1943,7 @@ __webpack_require__.r(__webpack_exports__);
       //   this.date = this.formatDate();
       axios.get("/api/romadans").then(function (response) {
         _this2.items.romadan = response.data[0].romadan;
-        _this2.items.date = response.data[0].date; //   console.log('response :>> ', this.items);
-
-        console.log("response.data.date :>> ", response.data[0].romadan);
+        _this2.items.date = response.data[0].date;
       })["catch"](function (error) {
         console.log("error :>> ", error);
       });
@@ -1956,6 +1952,9 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.getDateRomadan();
     this.getAllRomadan();
+    EventBus.$on('getTime', function (getDistrictdetails) {
+      console.log('objectjkfdhg :>> ', getDistrictdetails[0].id);
+    });
   }
 });
 
@@ -2000,11 +1999,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       divishions: [],
       districts: [],
+      getDistrictDetails: [],
       isDisabled: false
     };
   },
@@ -2018,12 +2019,22 @@ __webpack_require__.r(__webpack_exports__);
         console.log("error :>> ", error);
       });
     },
-    getDistricts: function getDistricts(event) {
+    getDistricts: function getDistricts(div_id) {
       var _this2 = this;
 
       this.isDisabled = true;
-      axios.get("/api/districts/".concat(event)).then(function (response) {
+      axios.get("/api/districts/divishion/".concat(div_id)).then(function (response) {
         _this2.districts = response.data;
+      })["catch"](function (error) {
+        console.log("error :>> ", error);
+      });
+    },
+    getTime: function getTime(event) {
+      var _this3 = this;
+
+      axios.get("/api/districts/".concat(event)).then(function (response) {
+        _this3.getDistrictDetails = response.data;
+        EventBus.$emit("getTime", _this3.getDistrictDetails);
       })["catch"](function (error) {
         console.log("error :>> ", error);
       });
@@ -2055,7 +2066,9 @@ __webpack_require__.r(__webpack_exports__);
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default; // to create custom event 
+
+window.EventBus = new vue__WEBPACK_IMPORTED_MODULE_0__.default();
 
 
 vue__WEBPACK_IMPORTED_MODULE_0__.default.use((vuetify__WEBPACK_IMPORTED_MODULE_1___default()));
@@ -37815,17 +37828,21 @@ var render = function() {
                 "v-col",
                 { staticClass: "d-flex", attrs: { cols: "12", sm: "6" } },
                 [
-                  _vm.isDisabled
-                    ? _c("v-select", {
-                        attrs: {
-                          items: _vm.districts,
-                          value: "name",
-                          "item-text": "name",
-                          label: "জেলা",
-                          dense: ""
-                        }
-                      })
-                    : _vm._e()
+                  _c("v-select", {
+                    attrs: {
+                      disabled: !_vm.isDisabled,
+                      items: _vm.districts,
+                      "item-value": "id",
+                      "item-text": "name",
+                      label: "জেলা",
+                      dense: ""
+                    },
+                    on: {
+                      change: function($event) {
+                        return _vm.getTime($event)
+                      }
+                    }
+                  })
                 ],
                 1
               )

@@ -7,6 +7,10 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+
+// to create custom event 
+window.EventBus = new Vue();
+
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 

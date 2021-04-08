@@ -11,4 +11,9 @@ class DistrictController extends Controller
     {
         return response(District::where('divishion_id', $div_id)->get());
     }
+
+    public function getDistrict($district_id)
+    {
+        return response(District::where('id', $district_id)->get());
+    }
 }
