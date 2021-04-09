@@ -32,15 +32,21 @@
     <v-card-title>Tonight's availability</v-card-title>
 
     <v-card-text>
-      <select-divishions-districts/>
+      <select-divishions-districts />
       <v-chip-group active-class="deep-purple accent-4 white--text" column>
-        <v-chip>5:30PM</v-chip>
+        <v-chip class="ma-2" color="green" dark label> সাহরির সময় </v-chip>
+        <v-chip class="ma-2" color="indigo" label text-color="white">
+          <v-icon left> mdi-clock </v-icon>
+          {{ sahri }}
+        </v-chip>
+      </v-chip-group>
 
-        <v-chip>7:30PM</v-chip>
-
-        <v-chip>8:00PM</v-chip>
-
-        <v-chip>9:00PM</v-chip>
+      <v-chip-group active-class="deep-purple accent-4 white--text" column>
+        <v-chip class="ma-2" color="teal" dark label> ইফতারের সময় </v-chip>
+        <v-chip class="ma-2" color="indigo" label text-color="white">
+          <v-icon left> mdi-clock </v-icon>
+          {{ iftar }}
+        </v-chip>
       </v-chip-group>
     </v-card-text>
 
@@ -55,19 +61,105 @@
   </v-card>
 </template>
 <script>
-import SelectDivishionsDistricts from './SelectDivishionsDistricts.vue';
+import SelectDivishionsDistricts from "./SelectDivishionsDistricts.vue";
 export default {
-  components: {SelectDivishionsDistricts},
+  components: { SelectDivishionsDistricts },
   data() {
     return {
       items: {
         romadan: "",
         date: "",
+        sahri: "",
+        ifatr: "",
       },
-      date: "2021-04-17",
+      currentDate: "2021-04-17",
+      sahri: "",
+      iftar: "",
     };
   },
   methods: {
+    checkSahriTime(addSahriTime, sahri) {
+      let defaultTime = moment.duration(this.items.sahri, "HH:mm:ss");
+      let addedTime = moment.duration(sahri, "HH:mm:ss");
+
+      if (addSahriTime) {
+        this.sahri = addedTime.add(defaultTime);
+        this.sahri =
+          this.formatTime(this.sahri.hours()) +
+          ":" +
+          this.formatTime(this.sahri.minutes()) +
+          ":" +
+          this.formatTime(this.sahri.seconds());
+      } else {
+        this.sahri = defaultTime.subtract(addedTime);
+        this.sahri =
+          this.formatTime(this.sahri.hours()) +
+          ":" +
+          this.formatTime(this.sahri.minutes()) +
+          ":" +
+          this.formatTime(this.sahri.seconds());
+      }
+    },
+    checkIftarTime(addIftarTime, iftar) {
+      let defaultTime = moment.duration(this.items.iftar, "HH:mm:ss");
+      let addedTime = moment.duration(iftar, "HH:mm:ss");
+
+      if (addIftarTime) {
+        this.iftar = addedTime.add(defaultTime);
+        this.iftar =
+          this.formatTime(this.iftar.hours()) +
+          ":" +
+          this.formatTime(this.iftar.minutes()) +
+          ":" +
+          this.formatTime(this.iftar.seconds());
+        // console.log(
+        //   "POS",
+        //   this.formatTime(this.iftar.hours()) +
+        //     ":" +
+        //     this.formatTime(this.iftar.minutes()) +
+        //     ":" +
+        //     this.formatTime(this.iftar.seconds())
+        // );
+      } else {
+        this.iftar = defaultTime.subtract(addedTime);
+        this.iftar =
+          this.formatTime(this.iftar.hours()) +
+          ":" +
+          this.formatTime(this.iftar.minutes()) +
+          ":" +
+          this.formatTime(this.iftar.seconds());
+        // console.log(
+        //   "NEG",
+        //   this.formatTime(this.iftar.hours()) +
+        //     ":" +
+        //     this.formatTime(this.iftar.minutes()) +
+        //     ":" +
+        //     this.formatTime(this.iftar.seconds())
+        // );
+      }
+    },
+    getTimeOfDistrict() {
+      EventBus.$on("getTime", (getDistrictdetails) => {
+        // TODO format iftar sahri time;
+        // difference of sahri and iftar
+        let diffSahri =
+          "00:" + this.formatTime(Math.abs(getDistrictdetails[0].sahri)) + ":00";
+
+        let diffIftar =
+          "00:" + this.formatTime(Math.abs(getDistrictdetails[0].iftar)) + ":00";
+
+        // TODO set default iftar sahri time;
+
+        // routing negative sahri ifatr value;
+        let addSahriTime = getDistrictdetails[0].sahri > 0 ? true : false;
+        let addIftarTime = getDistrictdetails[0].iftar > 0 ? true : false;
+
+        this.checkSahriTime(addSahriTime, diffSahri);
+        this.checkIftarTime(addIftarTime, diffIftar);
+
+        // take another function keep clean this event;
+      });
+    },
     formatDate() {
       var d = new Date(),
         month = "" + (d.getMonth() + 1),
@@ -79,13 +171,18 @@ export default {
 
       return [year, month, day].join("-");
     },
+    formatTime(value) {
+      return value < 10 ? "0" + value : value;
+    },
     getDateRomadan() {
       //   this.date = this.formatDate();
       axios
-        .get(`/api/romadans/${this.date}`)
+        .get(`/api/romadans/${this.currentDate}`)
         .then((response) => {
           this.items.romadan = response.data[0].romadan;
           this.items.date = response.data[0].date;
+          this.items.sahri = response.data[0].sahri;
+          this.items.iftar = response.data[0].iftar;
         })
         .catch((error) => {
           console.log("error :>> ", error);
@@ -103,15 +200,11 @@ export default {
           console.log("error :>> ", error);
         });
     },
-    
   },
   created() {
     this.getDateRomadan();
     this.getAllRomadan();
-
-    EventBus.$on('getTime',(getDistrictdetails)=>{
-        console.log('objectjkfdhg :>> ',getDistrictdetails[0].id);
-    });
+    this.getTimeOfDistrict();
   },
 };
 </script>

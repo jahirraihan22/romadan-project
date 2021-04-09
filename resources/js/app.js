@@ -14,6 +14,10 @@ window.EventBus = new Vue();
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 
+import moment from 'moment'
+
+window.moment = moment
+
 Vue.use(Vuetify);
 
 import AppHome from './components/AppHome';
