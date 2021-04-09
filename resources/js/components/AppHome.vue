@@ -10,16 +10,12 @@
 
     <v-img height="250" src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
 
-    <v-card-title>Cafe Badilico</v-card-title>
+    <v-card-title>{{ items.romadan }} , ১৪৪২ </v-card-title>
 
     <v-card-text>
       <v-row align="center" class="mx-0">
-        <v-rating color="amber" dense half-increments readonly size="14"></v-rating>
-
-        <div class="grey--text ml-4">4.5 (413)</div>
+        <div class="black--text my-4">{{ today }}</div>
       </v-row>
-
-      <div class="my-4 subtitle-1">$ • Italian, Cafe</div>
 
       <div>
         Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus
@@ -29,12 +25,15 @@
 
     <v-divider class="mx-4"></v-divider>
 
-    <v-card-title>Tonight's availability</v-card-title>
+    <v-card-title>আপনার জেলার ইফতার ও সাহরির সময়সূচী দেখুন</v-card-title>
 
     <v-card-text>
       <select-divishions-districts />
+      <v-alert color="#2A3B4D" dark icon="mdi-map" dense>
+        <b>{{ district }}</b> ও পার্শ্ববর্তী এলাকার ইফতার ও সাহরির সময়সূচী
+      </v-alert>
       <v-chip-group active-class="deep-purple accent-4 white--text" column>
-        <v-chip class="ma-2" color="green" dark label> সাহরির সময় </v-chip>
+        <v-chip class="ma-2" color="teal" dark label> সাহরি </v-chip>
         <v-chip class="ma-2" color="indigo" label text-color="white">
           <v-icon left> mdi-clock </v-icon>
           {{ sahri }}
@@ -42,7 +41,7 @@
       </v-chip-group>
 
       <v-chip-group active-class="deep-purple accent-4 white--text" column>
-        <v-chip class="ma-2" color="teal" dark label> ইফতারের সময় </v-chip>
+        <v-chip class="ma-2" color="teal" dark label> ইফতার </v-chip>
         <v-chip class="ma-2" color="indigo" label text-color="white">
           <v-icon left> mdi-clock </v-icon>
           {{ iftar }}
@@ -69,12 +68,15 @@ export default {
       items: {
         romadan: "",
         date: "",
+        day: "",
         sahri: "",
         ifatr: "",
       },
       currentDate: "2021-04-17",
       sahri: "",
       iftar: "",
+      district: "ঢাকা",
+      today: "",
     };
   },
   methods: {
@@ -99,6 +101,7 @@ export default {
           ":" +
           this.formatTime(this.sahri.seconds());
       }
+      this.sahri = moment(this.sahri, "HH:mm:ss").format("LTS");
     },
     checkIftarTime(addIftarTime, iftar) {
       let defaultTime = moment.duration(this.items.iftar, "HH:mm:ss");
@@ -112,14 +115,6 @@ export default {
           this.formatTime(this.iftar.minutes()) +
           ":" +
           this.formatTime(this.iftar.seconds());
-        // console.log(
-        //   "POS",
-        //   this.formatTime(this.iftar.hours()) +
-        //     ":" +
-        //     this.formatTime(this.iftar.minutes()) +
-        //     ":" +
-        //     this.formatTime(this.iftar.seconds())
-        // );
       } else {
         this.iftar = defaultTime.subtract(addedTime);
         this.iftar =
@@ -128,18 +123,12 @@ export default {
           this.formatTime(this.iftar.minutes()) +
           ":" +
           this.formatTime(this.iftar.seconds());
-        // console.log(
-        //   "NEG",
-        //   this.formatTime(this.iftar.hours()) +
-        //     ":" +
-        //     this.formatTime(this.iftar.minutes()) +
-        //     ":" +
-        //     this.formatTime(this.iftar.seconds())
-        // );
       }
+      this.iftar = moment(this.iftar, "HH:mm:ss").format("LTS");
     },
     getTimeOfDistrict() {
       EventBus.$on("getTime", (getDistrictdetails) => {
+        this.district = getDistrictdetails[0].name;
         // TODO format iftar sahri time;
         // difference of sahri and iftar
         let diffSahri =
@@ -181,8 +170,11 @@ export default {
         .then((response) => {
           this.items.romadan = response.data[0].romadan;
           this.items.date = response.data[0].date;
+          this.items.day = response.data[0].day;
           this.items.sahri = response.data[0].sahri;
           this.items.iftar = response.data[0].iftar;
+          this.sahri = moment(this.items.sahri, "HH:mm:ss").format("LTS");
+          this.iftar = moment(this.items.iftar, "HH:mm:ss").format("LTS");
         })
         .catch((error) => {
           console.log("error :>> ", error);
@@ -200,11 +192,16 @@ export default {
           console.log("error :>> ", error);
         });
     },
+    getToday() {
+      moment.locale("bn-bd");
+      this.today = moment().format("LLLL");
+    },
   },
   created() {
     this.getDateRomadan();
-    this.getAllRomadan();
+    // this.getAllRomadan();
     this.getTimeOfDistrict();
+    this.getToday();
   },
 };
 </script>

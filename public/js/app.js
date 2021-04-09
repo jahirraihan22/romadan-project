@@ -1907,7 +1907,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -1918,12 +1917,15 @@ __webpack_require__.r(__webpack_exports__);
       items: {
         romadan: "",
         date: "",
+        day: "",
         sahri: "",
         ifatr: ""
       },
       currentDate: "2021-04-17",
       sahri: "",
-      iftar: ""
+      iftar: "",
+      district: "ঢাকা",
+      today: ""
     };
   },
   methods: {
@@ -1938,6 +1940,8 @@ __webpack_require__.r(__webpack_exports__);
         this.sahri = defaultTime.subtract(addedTime);
         this.sahri = this.formatTime(this.sahri.hours()) + ":" + this.formatTime(this.sahri.minutes()) + ":" + this.formatTime(this.sahri.seconds());
       }
+
+      this.sahri = moment(this.sahri, "HH:mm:ss").format("LTS");
     },
     checkIftarTime: function checkIftarTime(addIftarTime, iftar) {
       var defaultTime = moment.duration(this.items.iftar, "HH:mm:ss");
@@ -1945,32 +1949,21 @@ __webpack_require__.r(__webpack_exports__);
 
       if (addIftarTime) {
         this.iftar = addedTime.add(defaultTime);
-        this.iftar = this.formatTime(this.iftar.hours()) + ":" + this.formatTime(this.iftar.minutes()) + ":" + this.formatTime(this.iftar.seconds()); // console.log(
-        //   "POS",
-        //   this.formatTime(this.iftar.hours()) +
-        //     ":" +
-        //     this.formatTime(this.iftar.minutes()) +
-        //     ":" +
-        //     this.formatTime(this.iftar.seconds())
-        // );
+        this.iftar = this.formatTime(this.iftar.hours()) + ":" + this.formatTime(this.iftar.minutes()) + ":" + this.formatTime(this.iftar.seconds());
       } else {
         this.iftar = defaultTime.subtract(addedTime);
-        this.iftar = this.formatTime(this.iftar.hours()) + ":" + this.formatTime(this.iftar.minutes()) + ":" + this.formatTime(this.iftar.seconds()); // console.log(
-        //   "NEG",
-        //   this.formatTime(this.iftar.hours()) +
-        //     ":" +
-        //     this.formatTime(this.iftar.minutes()) +
-        //     ":" +
-        //     this.formatTime(this.iftar.seconds())
-        // );
+        this.iftar = this.formatTime(this.iftar.hours()) + ":" + this.formatTime(this.iftar.minutes()) + ":" + this.formatTime(this.iftar.seconds());
       }
+
+      this.iftar = moment(this.iftar, "HH:mm:ss").format("LTS");
     },
     getTimeOfDistrict: function getTimeOfDistrict() {
       var _this = this;
 
       EventBus.$on("getTime", function (getDistrictdetails) {
-        // TODO format iftar sahri time;
+        _this.district = getDistrictdetails[0].name; // TODO format iftar sahri time;
         // difference of sahri and iftar
+
         var diffSahri = "00:" + _this.formatTime(Math.abs(getDistrictdetails[0].sahri)) + ":00";
         var diffIftar = "00:" + _this.formatTime(Math.abs(getDistrictdetails[0].iftar)) + ":00"; // TODO set default iftar sahri time;
         // routing negative sahri ifatr value;
@@ -2003,8 +1996,11 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/romadans/".concat(this.currentDate)).then(function (response) {
         _this2.items.romadan = response.data[0].romadan;
         _this2.items.date = response.data[0].date;
+        _this2.items.day = response.data[0].day;
         _this2.items.sahri = response.data[0].sahri;
         _this2.items.iftar = response.data[0].iftar;
+        _this2.sahri = moment(_this2.items.sahri, "HH:mm:ss").format("LTS");
+        _this2.iftar = moment(_this2.items.iftar, "HH:mm:ss").format("LTS");
       })["catch"](function (error) {
         console.log("error :>> ", error);
       });
@@ -2019,12 +2015,17 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log("error :>> ", error);
       });
+    },
+    getToday: function getToday() {
+      moment.locale("bn-bd");
+      this.today = moment().format("LLLL");
     }
   },
   created: function created() {
-    this.getDateRomadan();
-    this.getAllRomadan();
+    this.getDateRomadan(); // this.getAllRomadan();
+
     this.getTimeOfDistrict();
+    this.getToday();
   }
 });
 
@@ -59200,34 +59201,15 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("v-card-title", [_vm._v("Cafe Badilico")]),
+      _c("v-card-title", [_vm._v(_vm._s(_vm.items.romadan) + " , ১৪৪২ ")]),
       _vm._v(" "),
       _c(
         "v-card-text",
         [
-          _c(
-            "v-row",
-            { staticClass: "mx-0", attrs: { align: "center" } },
-            [
-              _c("v-rating", {
-                attrs: {
-                  color: "amber",
-                  dense: "",
-                  "half-increments": "",
-                  readonly: "",
-                  size: "14"
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "grey--text ml-4" }, [
-                _vm._v("4.5 (413)")
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "my-4 subtitle-1" }, [
-            _vm._v("$ • Italian, Cafe")
+          _c("v-row", { staticClass: "mx-0", attrs: { align: "center" } }, [
+            _c("div", { staticClass: "black--text my-4" }, [
+              _vm._v(_vm._s(_vm.today))
+            ])
           ]),
           _vm._v(" "),
           _c("div", [
@@ -59241,12 +59223,23 @@ var render = function() {
       _vm._v(" "),
       _c("v-divider", { staticClass: "mx-4" }),
       _vm._v(" "),
-      _c("v-card-title", [_vm._v("Tonight's availability")]),
+      _c("v-card-title", [_vm._v("আপনার জেলার ইফতার ও সাহরির সময়সূচী দেখুন")]),
       _vm._v(" "),
       _c(
         "v-card-text",
         [
           _c("select-divishions-districts"),
+          _vm._v(" "),
+          _c(
+            "v-alert",
+            {
+              attrs: { color: "#2A3B4D", dark: "", icon: "mdi-map", dense: "" }
+            },
+            [
+              _c("b", [_vm._v(_vm._s(_vm.district))]),
+              _vm._v(" ও পার্শ্ববর্তী এলাকার ইফতার ও সাহরির সময়সূচী\n    ")
+            ]
+          ),
           _vm._v(" "),
           _c(
             "v-chip-group",
@@ -59261,9 +59254,9 @@ var render = function() {
                 "v-chip",
                 {
                   staticClass: "ma-2",
-                  attrs: { color: "green", dark: "", label: "" }
+                  attrs: { color: "teal", dark: "", label: "" }
                 },
-                [_vm._v(" সাহরির সময় ")]
+                [_vm._v(" সাহরি ")]
               ),
               _vm._v(" "),
               _c(
@@ -59299,7 +59292,7 @@ var render = function() {
                   staticClass: "ma-2",
                   attrs: { color: "teal", dark: "", label: "" }
                 },
-                [_vm._v(" ইফতারের সময় ")]
+                [_vm._v(" ইফতার ")]
               ),
               _vm._v(" "),
               _c(
