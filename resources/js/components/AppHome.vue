@@ -10,7 +10,7 @@
 
     <v-img height="250" src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
 
-    <v-card-title>{{ items.romadan }} , ১৪৪২ </v-card-title>
+    <v-card-title>{{ items.romadan }} , ১৪৪২ হিজরি</v-card-title>
 
     <v-card-text>
       <v-row align="center" class="mx-0">
@@ -50,12 +50,12 @@
     </v-card-text>
 
     <v-card-actions>
-      <!-- <v-btn
+      <v-btn
         color="deep-purple lighten-2"
         text
       >
         Reserve
-      </v-btn> -->
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -72,7 +72,7 @@ export default {
         sahri: "",
         ifatr: "",
       },
-      currentDate: "2021-04-17",
+      currentDate: "2021-04-14",
       sahri: "",
       iftar: "",
       district: "ঢাকা",
@@ -101,7 +101,7 @@ export default {
           ":" +
           this.formatTime(this.sahri.seconds());
       }
-      this.sahri = moment(this.sahri, "HH:mm:ss").format("LTS");
+      this.sahri = moment(this.sahri, "HH:mm").format("LT").replace("সময়", "");
     },
     checkIftarTime(addIftarTime, iftar) {
       let defaultTime = moment.duration(this.items.iftar, "HH:mm:ss");
@@ -124,7 +124,7 @@ export default {
           ":" +
           this.formatTime(this.iftar.seconds());
       }
-      this.iftar = moment(this.iftar, "HH:mm:ss").format("LTS");
+      this.iftar = moment(this.iftar, "HH:mm").format("LT").replace("সময়", "");
     },
     getTimeOfDistrict() {
       EventBus.$on("getTime", (getDistrictdetails) => {
@@ -164,7 +164,8 @@ export default {
       return value < 10 ? "0" + value : value;
     },
     getDateRomadan() {
-      //   this.date = this.formatDate();
+      this.currentDate =
+        this.formatDate() < "2021-04-14" ? "2021-04-14" : this.formatDate();
       axios
         .get(`/api/romadans/${this.currentDate}`)
         .then((response) => {
@@ -173,15 +174,14 @@ export default {
           this.items.day = response.data[0].day;
           this.items.sahri = response.data[0].sahri;
           this.items.iftar = response.data[0].iftar;
-          this.sahri = moment(this.items.sahri, "HH:mm:ss").format("LTS");
-          this.iftar = moment(this.items.iftar, "HH:mm:ss").format("LTS");
+          this.sahri = moment(this.items.sahri, "HH:mm").format("LT").replace("সময়", "");
+          this.iftar = moment(this.items.iftar, "HH:mm").format("LT").replace("সময়", "");
         })
         .catch((error) => {
           console.log("error :>> ", error);
         });
     },
     getAllRomadan() {
-      //   this.date = this.formatDate();
       axios
         .get(`/api/romadans`)
         .then((response) => {
@@ -193,15 +193,18 @@ export default {
         });
     },
     getToday() {
-      moment.locale("bn-bd");
-      this.today = moment().format("LLLL");
+      this.today = moment().format("LLLL").replace("সময়", "");
     },
   },
   created() {
+    moment.locale("bn-bd");
+
     this.getDateRomadan();
     // this.getAllRomadan();
     this.getTimeOfDistrict();
-    this.getToday();
+    setInterval(() => {
+      this.getToday();
+    }, 1000);
   },
 };
 </script>

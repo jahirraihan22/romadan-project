@@ -1921,7 +1921,7 @@ __webpack_require__.r(__webpack_exports__);
         sahri: "",
         ifatr: ""
       },
-      currentDate: "2021-04-17",
+      currentDate: "2021-04-14",
       sahri: "",
       iftar: "",
       district: "ঢাকা",
@@ -1941,7 +1941,7 @@ __webpack_require__.r(__webpack_exports__);
         this.sahri = this.formatTime(this.sahri.hours()) + ":" + this.formatTime(this.sahri.minutes()) + ":" + this.formatTime(this.sahri.seconds());
       }
 
-      this.sahri = moment(this.sahri, "HH:mm:ss").format("LTS");
+      this.sahri = moment(this.sahri, "HH:mm").format("LT").replace("সময়", "");
     },
     checkIftarTime: function checkIftarTime(addIftarTime, iftar) {
       var defaultTime = moment.duration(this.items.iftar, "HH:mm:ss");
@@ -1955,7 +1955,7 @@ __webpack_require__.r(__webpack_exports__);
         this.iftar = this.formatTime(this.iftar.hours()) + ":" + this.formatTime(this.iftar.minutes()) + ":" + this.formatTime(this.iftar.seconds());
       }
 
-      this.iftar = moment(this.iftar, "HH:mm:ss").format("LTS");
+      this.iftar = moment(this.iftar, "HH:mm").format("LT").replace("সময়", "");
     },
     getTimeOfDistrict: function getTimeOfDistrict() {
       var _this = this;
@@ -1992,15 +1992,15 @@ __webpack_require__.r(__webpack_exports__);
     getDateRomadan: function getDateRomadan() {
       var _this2 = this;
 
-      //   this.date = this.formatDate();
+      this.currentDate = this.formatDate() < "2021-04-14" ? "2021-04-14" : this.formatDate();
       axios.get("/api/romadans/".concat(this.currentDate)).then(function (response) {
         _this2.items.romadan = response.data[0].romadan;
         _this2.items.date = response.data[0].date;
         _this2.items.day = response.data[0].day;
         _this2.items.sahri = response.data[0].sahri;
         _this2.items.iftar = response.data[0].iftar;
-        _this2.sahri = moment(_this2.items.sahri, "HH:mm:ss").format("LTS");
-        _this2.iftar = moment(_this2.items.iftar, "HH:mm:ss").format("LTS");
+        _this2.sahri = moment(_this2.items.sahri, "HH:mm").format("LT").replace("সময়", "");
+        _this2.iftar = moment(_this2.items.iftar, "HH:mm").format("LT").replace("সময়", "");
       })["catch"](function (error) {
         console.log("error :>> ", error);
       });
@@ -2008,7 +2008,6 @@ __webpack_require__.r(__webpack_exports__);
     getAllRomadan: function getAllRomadan() {
       var _this3 = this;
 
-      //   this.date = this.formatDate();
       axios.get("/api/romadans").then(function (response) {
         _this3.items.romadan = response.data[0].romadan;
         _this3.items.date = response.data[0].date;
@@ -2017,15 +2016,19 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getToday: function getToday() {
-      moment.locale("bn-bd");
-      this.today = moment().format("LLLL");
+      this.today = moment().format("LLLL").replace("সময়", "");
     }
   },
   created: function created() {
+    var _this4 = this;
+
+    moment.locale("bn-bd");
     this.getDateRomadan(); // this.getAllRomadan();
 
     this.getTimeOfDistrict();
-    this.getToday();
+    setInterval(function () {
+      _this4.getToday();
+    }, 1000);
   }
 });
 
@@ -59201,7 +59204,7 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("v-card-title", [_vm._v(_vm._s(_vm.items.romadan) + " , ১৪৪২ ")]),
+      _c("v-card-title", [_vm._v(_vm._s(_vm.items.romadan) + " , ১৪৪২ হিজরি")]),
       _vm._v(" "),
       _c(
         "v-card-text",
@@ -59316,7 +59319,15 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("v-card-actions")
+      _c(
+        "v-card-actions",
+        [
+          _c("v-btn", { attrs: { color: "deep-purple lighten-2", text: "" } }, [
+            _vm._v("\n      Reserve\n    ")
+          ])
+        ],
+        1
+      )
     ],
     2
   )
