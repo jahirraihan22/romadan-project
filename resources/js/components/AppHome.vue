@@ -15,7 +15,9 @@
 
       <v-card-text>
         <v-row align="center" class="mx-0">
-          <div class="black--text my-4"><b>{{ today }}</b></div>
+          <div class="black--text my-4">
+            <b>{{ today }}</b>
+          </div>
         </v-row>
 
         <div class="black--text">
@@ -35,18 +37,26 @@
           <b>{{ district }}</b> ও পার্শ্ববর্তী এলাকার ইফতার ও সাহরির সময়সূচী
         </v-alert>
         <v-chip-group active-class="deep-purple accent-4 white--text" column>
-          <v-chip class="ma-2" color="teal" dark label> সাহরি </v-chip>
-          <v-chip class="ma-2" color="indigo" label text-color="white">
+          <v-chip class="ma-2" color="#2A3B4D" dark label> সাহরি </v-chip>
+          <v-chip outlined class="ma-2" color="#2A3B4D" label dark>
             <v-icon left> mdi-clock </v-icon>
             {{ sahri }}
+          </v-chip>
+
+          <v-chip outlined class="ma-2" color="#2A3B4D" label dark>
+            আর মাত্র &nbsp; <strong> {{ leftTimeSahri }} </strong> &nbsp;বাকি
           </v-chip>
         </v-chip-group>
 
         <v-chip-group active-class="deep-purple accent-4 white--text" column>
-          <v-chip class="ma-2" color="teal" dark label> ইফতার </v-chip>
-          <v-chip class="ma-2" color="indigo" label text-color="white">
+          <v-chip class="ma-2" color="#2A3B4D" dark label> ইফতার </v-chip>
+          <v-chip class="ma-2" color="#2A3B4D" label dark outlined>
             <v-icon left> mdi-clock </v-icon>
             {{ iftar }}
+          </v-chip>
+
+          <v-chip outlined dark class="ma-2" color="#2A3B4D" label>
+            আর মাত্র &nbsp; <strong> {{ leftTimeIftar }} </strong> &nbsp;বাকি
           </v-chip>
         </v-chip-group>
       </v-card-text>
@@ -73,12 +83,15 @@ export default {
       iftar: "",
       district: "ঢাকা",
       today: "",
+      leftTimeSahri: "",
+      leftTimeIftar: "",
     };
   },
   methods: {
     checkSahriTime(addSahriTime, sahri) {
       let defaultTime = moment.duration(this.items.sahri, "HH:mm:ss");
       let addedTime = moment.duration(sahri, "HH:mm:ss");
+      let getDistShariTime = "";
 
       if (addSahriTime) {
         this.sahri = addedTime.add(defaultTime);
@@ -97,11 +110,14 @@ export default {
           ":" +
           this.formatTime(this.sahri.seconds());
       }
+      getDistShariTime = this.sahri;
       this.sahri = moment(this.sahri, "HH:mm").format("LT").replace("সময়", "");
+      return getDistShariTime;
     },
     checkIftarTime(addIftarTime, iftar) {
       let defaultTime = moment.duration(this.items.iftar, "HH:mm:ss");
       let addedTime = moment.duration(iftar, "HH:mm:ss");
+      let getDistIftarTime = "";
 
       if (addIftarTime) {
         this.iftar = addedTime.add(defaultTime);
@@ -120,7 +136,9 @@ export default {
           ":" +
           this.formatTime(this.iftar.seconds());
       }
+      getDistIftarTime = this.iftar;
       this.iftar = moment(this.iftar, "HH:mm").format("LT").replace("সময়", "");
+      return getDistIftarTime;
     },
     getTimeOfDistrict() {
       EventBus.$on("getTime", (getDistrictdetails) => {
@@ -139,8 +157,8 @@ export default {
         let addSahriTime = getDistrictdetails[0].sahri > 0 ? true : false;
         let addIftarTime = getDistrictdetails[0].iftar > 0 ? true : false;
 
-        this.checkSahriTime(addSahriTime, diffSahri);
-        this.checkIftarTime(addIftarTime, diffIftar);
+        this.items.sahri = this.checkSahriTime(addSahriTime, diffSahri);
+        this.items.iftar = this.checkIftarTime(addIftarTime, diffIftar);
 
         // take another function keep clean this event;
       });
@@ -191,6 +209,14 @@ export default {
     getToday() {
       this.today = moment().format("LLLL").replace("সময়", "");
     },
+    timeDiff(t) {
+      let now = t;
+      let then = moment().format("HH:mm:ss");
+
+      return moment
+        .utc(moment(now, "HH:mm:ss").diff(moment(then, "HH:mm:ss")))
+        .format("HH:mm:ss");
+    },
   },
   created() {
     moment.locale("bn-bd");
@@ -200,6 +226,8 @@ export default {
     this.getTimeOfDistrict();
     setInterval(() => {
       this.getToday();
+      this.leftTimeSahri = this.timeDiff(this.items.sahri);
+      this.leftTimeIftar = this.timeDiff(this.items.iftar);
     }, 1000);
   },
 };

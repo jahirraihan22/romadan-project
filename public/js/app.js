@@ -1938,6 +1938,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -1958,13 +1968,16 @@ __webpack_require__.r(__webpack_exports__);
       sahri: "",
       iftar: "",
       district: "ঢাকা",
-      today: ""
+      today: "",
+      leftTimeSahri: "",
+      leftTimeIftar: ""
     };
   },
   methods: {
     checkSahriTime: function checkSahriTime(addSahriTime, sahri) {
       var defaultTime = moment.duration(this.items.sahri, "HH:mm:ss");
       var addedTime = moment.duration(sahri, "HH:mm:ss");
+      var getDistShariTime = "";
 
       if (addSahriTime) {
         this.sahri = addedTime.add(defaultTime);
@@ -1974,11 +1987,14 @@ __webpack_require__.r(__webpack_exports__);
         this.sahri = this.formatTime(this.sahri.hours()) + ":" + this.formatTime(this.sahri.minutes()) + ":" + this.formatTime(this.sahri.seconds());
       }
 
+      getDistShariTime = this.sahri;
       this.sahri = moment(this.sahri, "HH:mm").format("LT").replace("সময়", "");
+      return getDistShariTime;
     },
     checkIftarTime: function checkIftarTime(addIftarTime, iftar) {
       var defaultTime = moment.duration(this.items.iftar, "HH:mm:ss");
       var addedTime = moment.duration(iftar, "HH:mm:ss");
+      var getDistIftarTime = "";
 
       if (addIftarTime) {
         this.iftar = addedTime.add(defaultTime);
@@ -1988,7 +2004,9 @@ __webpack_require__.r(__webpack_exports__);
         this.iftar = this.formatTime(this.iftar.hours()) + ":" + this.formatTime(this.iftar.minutes()) + ":" + this.formatTime(this.iftar.seconds());
       }
 
+      getDistIftarTime = this.iftar;
       this.iftar = moment(this.iftar, "HH:mm").format("LT").replace("সময়", "");
+      return getDistIftarTime;
     },
     getTimeOfDistrict: function getTimeOfDistrict() {
       var _this = this;
@@ -2003,11 +2021,8 @@ __webpack_require__.r(__webpack_exports__);
 
         var addSahriTime = getDistrictdetails[0].sahri > 0 ? true : false;
         var addIftarTime = getDistrictdetails[0].iftar > 0 ? true : false;
-
-        _this.checkSahriTime(addSahriTime, diffSahri);
-
-        _this.checkIftarTime(addIftarTime, diffIftar); // take another function keep clean this event;
-
+        _this.items.sahri = _this.checkSahriTime(addSahriTime, diffSahri);
+        _this.items.iftar = _this.checkIftarTime(addIftarTime, diffIftar); // take another function keep clean this event;
       });
     },
     formatDate: function formatDate() {
@@ -2050,6 +2065,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     getToday: function getToday() {
       this.today = moment().format("LLLL").replace("সময়", "");
+    },
+    timeDiff: function timeDiff(t) {
+      var now = t;
+      var then = moment().format("HH:mm:ss");
+      return moment.utc(moment(now, "HH:mm:ss").diff(moment(then, "HH:mm:ss"))).format("HH:mm:ss");
     }
   },
   created: function created() {
@@ -2061,6 +2081,9 @@ __webpack_require__.r(__webpack_exports__);
     this.getTimeOfDistrict();
     setInterval(function () {
       _this4.getToday();
+
+      _this4.leftTimeSahri = _this4.timeDiff(_this4.items.sahri);
+      _this4.leftTimeIftar = _this4.timeDiff(_this4.items.iftar);
     }, 1000);
   }
 });
@@ -59422,7 +59445,7 @@ var render = function() {
                     "v-chip",
                     {
                       staticClass: "ma-2",
-                      attrs: { color: "teal", dark: "", label: "" }
+                      attrs: { color: "#2A3B4D", dark: "", label: "" }
                     },
                     [_vm._v(" সাহরি ")]
                   ),
@@ -59432,9 +59455,10 @@ var render = function() {
                     {
                       staticClass: "ma-2",
                       attrs: {
-                        color: "indigo",
+                        outlined: "",
+                        color: "#2A3B4D",
                         label: "",
-                        "text-color": "white"
+                        dark: ""
                       }
                     },
                     [
@@ -59444,6 +59468,26 @@ var render = function() {
                       _vm._v("\n          " + _vm._s(_vm.sahri) + "\n        ")
                     ],
                     1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-chip",
+                    {
+                      staticClass: "ma-2",
+                      attrs: {
+                        outlined: "",
+                        color: "#2A3B4D",
+                        label: "",
+                        dark: ""
+                      }
+                    },
+                    [
+                      _vm._v("\n          আর মাত্র   "),
+                      _c("strong", [
+                        _vm._v(" " + _vm._s(_vm.leftTimeSahri) + " ")
+                      ]),
+                      _vm._v("  বাকি\n        ")
+                    ]
                   )
                 ],
                 1
@@ -59462,7 +59506,7 @@ var render = function() {
                     "v-chip",
                     {
                       staticClass: "ma-2",
-                      attrs: { color: "teal", dark: "", label: "" }
+                      attrs: { color: "#2A3B4D", dark: "", label: "" }
                     },
                     [_vm._v(" ইফতার ")]
                   ),
@@ -59472,9 +59516,10 @@ var render = function() {
                     {
                       staticClass: "ma-2",
                       attrs: {
-                        color: "indigo",
+                        color: "#2A3B4D",
                         label: "",
-                        "text-color": "white"
+                        dark: "",
+                        outlined: ""
                       }
                     },
                     [
@@ -59484,6 +59529,26 @@ var render = function() {
                       _vm._v("\n          " + _vm._s(_vm.iftar) + "\n        ")
                     ],
                     1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-chip",
+                    {
+                      staticClass: "ma-2",
+                      attrs: {
+                        outlined: "",
+                        dark: "",
+                        color: "#2A3B4D",
+                        label: ""
+                      }
+                    },
+                    [
+                      _vm._v("\n          আর মাত্র   "),
+                      _c("strong", [
+                        _vm._v(" " + _vm._s(_vm.leftTimeIftar) + " ")
+                      ]),
+                      _vm._v("  বাকি\n        ")
+                    ]
                   )
                 ],
                 1
