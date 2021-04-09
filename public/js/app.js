@@ -1834,6 +1834,41 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AppFooter.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AppFooter.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AppHome.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AppHome.vue?vue&type=script&lang=js& ***!
@@ -1845,12 +1880,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _SelectDivishionsDistricts_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SelectDivishionsDistricts.vue */ "./resources/js/components/SelectDivishionsDistricts.vue");
-//
-//
-//
-//
-//
+/* harmony import */ var _AppFooter_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AppFooter.vue */ "./resources/js/components/AppFooter.vue");
+/* harmony import */ var _SelectDivishionsDistricts_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SelectDivishionsDistricts.vue */ "./resources/js/components/SelectDivishionsDistricts.vue");
 //
 //
 //
@@ -1908,9 +1939,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    SelectDivishionsDistricts: _SelectDivishionsDistricts_vue__WEBPACK_IMPORTED_MODULE_0__.default
+    SelectDivishionsDistricts: _SelectDivishionsDistricts_vue__WEBPACK_IMPORTED_MODULE_1__.default,
+    AppFooter: _AppFooter_vue__WEBPACK_IMPORTED_MODULE_0__.default
   },
   data: function data() {
     return {
@@ -59022,6 +59055,45 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./resources/js/components/AppFooter.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/components/AppFooter.vue ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AppFooter_vue_vue_type_template_id_4ab6097e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AppFooter.vue?vue&type=template&id=4ab6097e& */ "./resources/js/components/AppFooter.vue?vue&type=template&id=4ab6097e&");
+/* harmony import */ var _AppFooter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AppFooter.vue?vue&type=script&lang=js& */ "./resources/js/components/AppFooter.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _AppFooter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _AppFooter_vue_vue_type_template_id_4ab6097e___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AppFooter_vue_vue_type_template_id_4ab6097e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/AppFooter.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/AppHome.vue":
 /*!*********************************************!*\
   !*** ./resources/js/components/AppHome.vue ***!
@@ -59100,6 +59172,22 @@ component.options.__file = "resources/js/components/SelectDivishionsDistricts.vu
 
 /***/ }),
 
+/***/ "./resources/js/components/AppFooter.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/AppFooter.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AppFooter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AppFooter.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AppFooter.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AppFooter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/AppHome.vue?vue&type=script&lang=js&":
 /*!**********************************************************************!*\
   !*** ./resources/js/components/AppHome.vue?vue&type=script&lang=js& ***!
@@ -59129,6 +59217,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SelectDivishionsDistricts_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SelectDivishionsDistricts.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SelectDivishionsDistricts.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SelectDivishionsDistricts_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/AppFooter.vue?vue&type=template&id=4ab6097e&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/AppFooter.vue?vue&type=template&id=4ab6097e& ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AppFooter_vue_vue_type_template_id_4ab6097e___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AppFooter_vue_vue_type_template_id_4ab6097e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AppFooter_vue_vue_type_template_id_4ab6097e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AppFooter.vue?vue&type=template&id=4ab6097e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AppFooter.vue?vue&type=template&id=4ab6097e&");
+
 
 /***/ }),
 
@@ -59166,6 +59271,52 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AppFooter.vue?vue&type=template&id=4ab6097e&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AppFooter.vue?vue&type=template&id=4ab6097e& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-card",
+    {
+      staticClass: "py-3 mx-auto my-3 lighten-1 white--text text-center",
+      attrs: { flat: "", tile: "", color: "#2A3B4D", "max-width": "600" }
+    },
+    [
+      _c("v-card-text", { staticClass: "white--text pt-0" }, [
+        _vm._v(
+          "\n    সূত্র: বাংলাদেশ আবহাওয়া (www.bmd.gov.bd) | www.muslimpro.com | আল জামি'আহ আস-সালাফিয়্যাহ | গণনা পদ্ধতি:\n    University of Islamic Sciences, Karachi\n  "
+        )
+      ]),
+      _vm._v(" "),
+      _c("v-divider"),
+      _vm._v(" "),
+      _c("v-card-text", { staticClass: "white--text" }, [
+        _vm._v("\n    " + _vm._s(new Date().getFullYear()) + " — "),
+        _c("strong", [_vm._v("©Jahir Raihan")])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AppHome.vue?vue&type=template&id=31d277f6&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AppHome.vue?vue&type=template&id=31d277f6& ***!
@@ -59183,132 +59334,157 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-card",
-    { staticClass: "mx-auto my-12", attrs: { "max-width": "374" } },
+    "div",
     [
       _c(
-        "template",
-        { slot: "progress" },
+        "v-card",
+        { staticClass: "mx-auto", attrs: { "max-width": "600" } },
         [
-          _c("v-progress-linear", {
-            attrs: { color: "deep-purple", height: "10", indeterminate: "" }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("v-img", {
-        attrs: {
-          height: "250",
-          src: "https://cdn.vuetifyjs.com/images/cards/cooking.png"
-        }
-      }),
-      _vm._v(" "),
-      _c("v-card-title", [_vm._v(_vm._s(_vm.items.romadan) + " , ১৪৪২ হিজরি")]),
-      _vm._v(" "),
-      _c(
-        "v-card-text",
-        [
-          _c("v-row", { staticClass: "mx-0", attrs: { align: "center" } }, [
-            _c("div", { staticClass: "black--text my-4" }, [
-              _vm._v(_vm._s(_vm.today))
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _vm._v(
-              "\n      Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus\n      patio seating.\n    "
-            )
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("v-divider", { staticClass: "mx-4" }),
-      _vm._v(" "),
-      _c("v-card-title", [_vm._v("আপনার জেলার ইফতার ও সাহরির সময়সূচী দেখুন")]),
-      _vm._v(" "),
-      _c(
-        "v-card-text",
-        [
-          _c("select-divishions-districts"),
-          _vm._v(" "),
           _c(
-            "v-alert",
-            {
-              attrs: { color: "#2A3B4D", dark: "", icon: "mdi-map", dense: "" }
-            },
+            "template",
+            { slot: "progress" },
             [
-              _c("b", [_vm._v(_vm._s(_vm.district))]),
-              _vm._v(" ও পার্শ্ববর্তী এলাকার ইফতার ও সাহরির সময়সূচী\n    ")
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "v-chip-group",
-            {
-              attrs: {
-                "active-class": "deep-purple accent-4 white--text",
-                column: ""
-              }
-            },
-            [
-              _c(
-                "v-chip",
-                {
-                  staticClass: "ma-2",
-                  attrs: { color: "teal", dark: "", label: "" }
-                },
-                [_vm._v(" সাহরি ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-chip",
-                {
-                  staticClass: "ma-2",
-                  attrs: { color: "indigo", label: "", "text-color": "white" }
-                },
-                [
-                  _c("v-icon", { attrs: { left: "" } }, [
-                    _vm._v(" mdi-clock ")
-                  ]),
-                  _vm._v("\n        " + _vm._s(_vm.sahri) + "\n      ")
-                ],
-                1
-              )
+              _c("v-progress-linear", {
+                attrs: { color: "deep-purple", height: "10", indeterminate: "" }
+              })
             ],
             1
           ),
           _vm._v(" "),
+          _c("v-img", {
+            attrs: {
+              height: "300",
+              src: "https://wallpapercave.com/wp/wp1832079.jpg"
+            }
+          }),
+          _vm._v(" "),
+          _c("v-card-title", [
+            _vm._v(_vm._s(_vm.items.romadan) + " , ১৪৪২ হিজরি")
+          ]),
+          _vm._v(" "),
           _c(
-            "v-chip-group",
-            {
-              attrs: {
-                "active-class": "deep-purple accent-4 white--text",
-                column: ""
-              }
-            },
+            "v-card-text",
             [
+              _c("v-row", { staticClass: "mx-0", attrs: { align: "center" } }, [
+                _c("div", { staticClass: "black--text my-4" }, [
+                  _c("b", [_vm._v(_vm._s(_vm.today))])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "black--text" }, [
+                _vm._v(
+                  "\n        জান্নাতের আটটি দরজা রয়েছে। এর মধ্যে একটি দরজার নাম ‘রাইয়ান’। এ দরজা দিয়ে শুধু\n        রোজাদারগণ প্রবেশ করবে। অন্যরাও এই দরজা দিয়ে প্রবেশ করতে চাইবে। কিন্তু রোজাদার\n        ব্যতীত অন্য কাউকে এ দরজা দিয়ে প্রবেশ করতে দেওয়া হবে না। (বুখারি ও মুসলিম)।\n      "
+                )
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-divider", { staticClass: "mx-4" }),
+          _vm._v(" "),
+          _c("v-card-title", [
+            _vm._v("আপনার জেলার ইফতার ও সাহরির সময়সূচী দেখুন")
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-card-text",
+            [
+              _c("select-divishions-districts"),
+              _vm._v(" "),
               _c(
-                "v-chip",
+                "v-alert",
                 {
-                  staticClass: "ma-2",
-                  attrs: { color: "teal", dark: "", label: "" }
+                  attrs: {
+                    color: "#2A3B4D",
+                    dark: "",
+                    icon: "mdi-map",
+                    dense: ""
+                  }
                 },
-                [_vm._v(" ইফতার ")]
+                [
+                  _c("b", [_vm._v(_vm._s(_vm.district))]),
+                  _vm._v(
+                    " ও পার্শ্ববর্তী এলাকার ইফতার ও সাহরির সময়সূচী\n      "
+                  )
+                ]
               ),
               _vm._v(" "),
               _c(
-                "v-chip",
+                "v-chip-group",
                 {
-                  staticClass: "ma-2",
-                  attrs: { color: "indigo", label: "", "text-color": "white" }
+                  attrs: {
+                    "active-class": "deep-purple accent-4 white--text",
+                    column: ""
+                  }
                 },
                 [
-                  _c("v-icon", { attrs: { left: "" } }, [
-                    _vm._v(" mdi-clock ")
-                  ]),
-                  _vm._v("\n        " + _vm._s(_vm.iftar) + "\n      ")
+                  _c(
+                    "v-chip",
+                    {
+                      staticClass: "ma-2",
+                      attrs: { color: "teal", dark: "", label: "" }
+                    },
+                    [_vm._v(" সাহরি ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-chip",
+                    {
+                      staticClass: "ma-2",
+                      attrs: {
+                        color: "indigo",
+                        label: "",
+                        "text-color": "white"
+                      }
+                    },
+                    [
+                      _c("v-icon", { attrs: { left: "" } }, [
+                        _vm._v(" mdi-clock ")
+                      ]),
+                      _vm._v("\n          " + _vm._s(_vm.sahri) + "\n        ")
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-chip-group",
+                {
+                  attrs: {
+                    "active-class": "deep-purple accent-4 white--text",
+                    column: ""
+                  }
+                },
+                [
+                  _c(
+                    "v-chip",
+                    {
+                      staticClass: "ma-2",
+                      attrs: { color: "teal", dark: "", label: "" }
+                    },
+                    [_vm._v(" ইফতার ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-chip",
+                    {
+                      staticClass: "ma-2",
+                      attrs: {
+                        color: "indigo",
+                        label: "",
+                        "text-color": "white"
+                      }
+                    },
+                    [
+                      _c("v-icon", { attrs: { left: "" } }, [
+                        _vm._v(" mdi-clock ")
+                      ]),
+                      _vm._v("\n          " + _vm._s(_vm.iftar) + "\n        ")
+                    ],
+                    1
+                  )
                 ],
                 1
               )
@@ -59316,20 +59492,12 @@ var render = function() {
             1
           )
         ],
-        1
+        2
       ),
       _vm._v(" "),
-      _c(
-        "v-card-actions",
-        [
-          _c("v-btn", { attrs: { color: "deep-purple lighten-2", text: "" } }, [
-            _vm._v("\n      Reserve\n    ")
-          ])
-        ],
-        1
-      )
+      _c("app-footer")
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []

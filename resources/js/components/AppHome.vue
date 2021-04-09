@@ -1,68 +1,64 @@
 <template>
-  <v-card class="mx-auto my-12" max-width="374">
-    <template slot="progress">
-      <v-progress-linear
-        color="deep-purple"
-        height="10"
-        indeterminate
-      ></v-progress-linear>
-    </template>
+  <div>
+    <v-card class="mx-auto" max-width="600">
+      <template slot="progress">
+        <v-progress-linear
+          color="deep-purple"
+          height="10"
+          indeterminate
+        ></v-progress-linear>
+      </template>
 
-    <v-img height="250" src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
+      <v-img height="300" src="https://wallpapercave.com/wp/wp1832079.jpg"></v-img>
 
-    <v-card-title>{{ items.romadan }} , ১৪৪২ হিজরি</v-card-title>
+      <v-card-title>{{ items.romadan }} , ১৪৪২ হিজরি</v-card-title>
 
-    <v-card-text>
-      <v-row align="center" class="mx-0">
-        <div class="black--text my-4">{{ today }}</div>
-      </v-row>
+      <v-card-text>
+        <v-row align="center" class="mx-0">
+          <div class="black--text my-4"><b>{{ today }}</b></div>
+        </v-row>
 
-      <div>
-        Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus
-        patio seating.
-      </div>
-    </v-card-text>
+        <div class="black--text">
+          জান্নাতের আটটি দরজা রয়েছে। এর মধ্যে একটি দরজার নাম ‘রাইয়ান’। এ দরজা দিয়ে শুধু
+          রোজাদারগণ প্রবেশ করবে। অন্যরাও এই দরজা দিয়ে প্রবেশ করতে চাইবে। কিন্তু রোজাদার
+          ব্যতীত অন্য কাউকে এ দরজা দিয়ে প্রবেশ করতে দেওয়া হবে না। (বুখারি ও মুসলিম)।
+        </div>
+      </v-card-text>
 
-    <v-divider class="mx-4"></v-divider>
+      <v-divider class="mx-4"></v-divider>
 
-    <v-card-title>আপনার জেলার ইফতার ও সাহরির সময়সূচী দেখুন</v-card-title>
+      <v-card-title>আপনার জেলার ইফতার ও সাহরির সময়সূচী দেখুন</v-card-title>
 
-    <v-card-text>
-      <select-divishions-districts />
-      <v-alert color="#2A3B4D" dark icon="mdi-map" dense>
-        <b>{{ district }}</b> ও পার্শ্ববর্তী এলাকার ইফতার ও সাহরির সময়সূচী
-      </v-alert>
-      <v-chip-group active-class="deep-purple accent-4 white--text" column>
-        <v-chip class="ma-2" color="teal" dark label> সাহরি </v-chip>
-        <v-chip class="ma-2" color="indigo" label text-color="white">
-          <v-icon left> mdi-clock </v-icon>
-          {{ sahri }}
-        </v-chip>
-      </v-chip-group>
+      <v-card-text>
+        <select-divishions-districts />
+        <v-alert color="#2A3B4D" dark icon="mdi-map" dense>
+          <b>{{ district }}</b> ও পার্শ্ববর্তী এলাকার ইফতার ও সাহরির সময়সূচী
+        </v-alert>
+        <v-chip-group active-class="deep-purple accent-4 white--text" column>
+          <v-chip class="ma-2" color="teal" dark label> সাহরি </v-chip>
+          <v-chip class="ma-2" color="indigo" label text-color="white">
+            <v-icon left> mdi-clock </v-icon>
+            {{ sahri }}
+          </v-chip>
+        </v-chip-group>
 
-      <v-chip-group active-class="deep-purple accent-4 white--text" column>
-        <v-chip class="ma-2" color="teal" dark label> ইফতার </v-chip>
-        <v-chip class="ma-2" color="indigo" label text-color="white">
-          <v-icon left> mdi-clock </v-icon>
-          {{ iftar }}
-        </v-chip>
-      </v-chip-group>
-    </v-card-text>
-
-    <v-card-actions>
-      <v-btn
-        color="deep-purple lighten-2"
-        text
-      >
-        Reserve
-      </v-btn>
-    </v-card-actions>
-  </v-card>
+        <v-chip-group active-class="deep-purple accent-4 white--text" column>
+          <v-chip class="ma-2" color="teal" dark label> ইফতার </v-chip>
+          <v-chip class="ma-2" color="indigo" label text-color="white">
+            <v-icon left> mdi-clock </v-icon>
+            {{ iftar }}
+          </v-chip>
+        </v-chip-group>
+      </v-card-text>
+    </v-card>
+    <app-footer />
+  </div>
 </template>
 <script>
+import AppFooter from "./AppFooter.vue";
 import SelectDivishionsDistricts from "./SelectDivishionsDistricts.vue";
 export default {
-  components: { SelectDivishionsDistricts },
+  components: { SelectDivishionsDistricts, AppFooter },
   data() {
     return {
       items: {
