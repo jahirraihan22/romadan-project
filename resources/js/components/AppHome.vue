@@ -38,24 +38,24 @@
         </v-alert>
         <v-chip-group active-class="deep-purple accent-4 white--text" column>
           <v-chip class="ma-2" color="#2A3B4D" dark label> সাহরি </v-chip>
-          <v-chip outlined class="ma-2" color="#2A3B4D" label dark>
+          <v-chip  class="ma-2" color="#2A3B4D" label dark>
             <v-icon left> mdi-clock </v-icon>
             {{ sahri }}
           </v-chip>
 
-          <v-chip outlined class="ma-2" color="#2A3B4D" label dark>
+          <v-chip  class="ma-2" color="#2A3B4D" label dark>
             আর মাত্র &nbsp; <strong> {{ leftTimeSahri }} </strong> &nbsp;বাকি
           </v-chip>
         </v-chip-group>
 
         <v-chip-group active-class="deep-purple accent-4 white--text" column>
           <v-chip class="ma-2" color="#2A3B4D" dark label> ইফতার </v-chip>
-          <v-chip class="ma-2" color="#2A3B4D" label dark outlined>
+          <v-chip class="ma-2" color="#2A3B4D" label dark >
             <v-icon left> mdi-clock </v-icon>
             {{ iftar }}
           </v-chip>
 
-          <v-chip outlined dark class="ma-2" color="#2A3B4D" label>
+          <v-chip  dark class="ma-2" color="#2A3B4D" label>
             আর মাত্র &nbsp; <strong> {{ leftTimeIftar }} </strong> &nbsp;বাকি
           </v-chip>
         </v-chip-group>
