@@ -226,8 +226,8 @@ export default {
     this.getTimeOfDistrict();
     setInterval(() => {
       this.getToday();
-      this.leftTimeSahri = this.timeDiff(this.items.sahri);
-      this.leftTimeIftar = this.timeDiff(this.items.iftar);
+      this.leftTimeSahri = this.timeDiff(this.items.sahri) == '00:00:00'?'00:00:00':this.timeDiff(this.items.sahri);
+      this.leftTimeIftar = this.timeDiff(this.items.iftar) == '00:00:00'?'00:00:00':this.timeDiff(this.items.iftar);
     }, 1000);
   },
 };
